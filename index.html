@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KEI 연구분야별 프로젝트 검색 시스템</title>
+    <title>KEI Project Search by Research Focus</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -451,15 +451,15 @@
     <div class="container">
         <!-- 헤더 -->
         <div class="header">
-            <h1>KEI 연구분야별 프로젝트 검색</h1>
-            <p>관심 있는 연구분야를 선택하여 관련 프로젝트를 탐색해보세요</p>
+            <h1>KEI Project Search by Research Focus</h1>
+            <p>Select one or more research focuses to explore related projects.</p>
         </div>
 
         <!-- 메인 컨텐츠 -->
         <div class="main-content">
             <!-- 연구분야 선택 섹션 -->
             <div class="research-fields-section">
-                <h2 class="section-title">연구분야 선택</h2>
+                <h2 class="section-title">Select Research Focus</h2>
                 
                 <div class="research-fields-grid" id="researchFieldsGrid">
                     <!-- 연구분야 카드들이 여기에 동적으로 생성됩니다 -->
@@ -468,7 +468,7 @@
                 <!-- 선택 요약 -->
                 <div class="selection-summary hide" id="selectionSummary">
                     <div style="font-weight: 600; margin-bottom: 8px;">
-                        선택된 연구분야 (<span id="selectedCount">0</span>개)
+                        Selected Research (<span id="selectedCount">0</span>Projects)
                     </div>
                     <div class="selected-fields" id="selectedFields">
                         <!-- 선택된 분야 태그들이 여기에 표시됩니다 -->
@@ -480,26 +480,26 @@
             <div class="results-section">
                 <div class="results-header">
                     <div class="results-info">
-                        검색 결과: <span id="resultsCount">데이터를 로딩 중...</span>
+                        Search Results: <span id="resultsCount">Loading Data ...</span>
                     </div>
                     <div class="action-buttons">
                         <button class="btn btn-secondary" onclick="clearSelection()">
-                            선택 초기화
+                            Reset Selection
                         </button>
                         <button class="btn btn-secondary" onclick="selectAllProjects()" id="selectAllBtn">
-                            전체 선택
+                            Select All
                         </button>
                         <button class="btn btn-secondary" onclick="clearProjectSelection()" id="clearProjectBtn">
-                            선택 해제
+                            Deselect All
                         </button>
                         <button class="btn btn-warning" onclick="downloadExcel()" id="downloadExcelBtn" disabled>
-                            Excel 다운로드 (<span id="selectedProjectCount">0</span>개)
+                            Download Excel (<span id="selectedProjectCount">0</span> Projects)
                         </button>
                         <button class="btn btn-success" onclick="downloadPDF()" id="downloadBtn" disabled>
-                            PDF 다운로드 (<span id="selectedProjectCountPDF">0</span>개)
+                            Download PDF (<span id="selectedProjectCountPDF">0</span>개)
                         </button>
                         <button class="btn btn-primary" onclick="refreshData()">
-                            새로고침
+                            Refresh
                         </button>
                     </div>
                 </div>
@@ -508,7 +508,7 @@
                 <div id="projectsList">
                     <div class="loading">
                         <div class="spinner"></div>
-                        <div>데이터를 로딩하고 있습니다...</div>
+                        <div>Loading Data ...</div>
                     </div>
                 </div>
             </div>
@@ -516,9 +516,9 @@
 
         <!-- 상태바 -->
         <div class="status-bar">
-            서버 상태: <span id="serverStatus">확인 중...</span> | 
-            데이터 파일: <span id="dataFile">로딩 중...</span> | 
-            마지막 업데이트: <span id="lastUpdate">-</span>
+            Server Status: <span id="serverStatus">Checking ...</span> | 
+            Data File: <span id="dataFile">Loading ...</span> | 
+            Last Update: <span id="lastUpdate">-</span>
         </div>
     </div>
 
@@ -1162,16 +1162,16 @@
 
                 const headerHtml = `
                     <div style="text-align: center; margin-bottom: 20px;">
-                        <h1 style="color: #2c3e50; font-size: 24px; margin-bottom: 10px; margin-top: 0;">KEI 연구분야별 프로젝트 검색 결과</h1>
-                        <p style="color: #666; font-size: 14px; margin: 5px 0;">
-                            생성일: ${new Date().toLocaleDateString('ko-KR')} | 
-                            총 프로젝트: ${selectedProjectsList.length}개
-                        </p>
+                        <h1 style="color: #2c3e50; font-size: 24px; margin-bottom: 10px; margin-top: 0;">KEI Project Search Results by Research Focus</h1>
                         ${selectedFields.length > 0 ? `
                             <p style="color: #666; font-size: 14px; margin: 5px 0;">
-                                선택된 연구분야: ${selectedFields.map(field => fieldToOriginalMap.get(field) || field).join(', ')}
+                                Selected Focus(es): ${selectedFields.map(field => fieldToOriginalMap.get(field) || field).join(', ')}
                             </p>
                         ` : ''}
+                        <p style="color: #666; font-size: 14px; margin: 5px 0;">
+                            Created on: ${new Date().toLocaleDateString('en-US')} | 
+                            Total Projects: ${selectedProjectsList.length}
+                        </p>
                     </div>
                 `;
 
