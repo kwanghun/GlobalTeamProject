@@ -858,7 +858,7 @@
             const downloadBtn = document.getElementById('downloadBtn');
             const downloadExcelBtn = document.getElementById('downloadExcelBtn');
             
-            resultsCount.textContent = `${filteredProjects.length}개 프로젝트`;
+            resultsCount.textContent = `${filteredProjects.length} Project(s)`;
             
             if (filteredProjects.length === 0) {
                 container.innerHTML = `
@@ -1070,7 +1070,7 @@
                 const metaData = [
                     ['KEI Research Projects Export'],
                     [''],
-                    ['Export Date:', new Date().toLocaleDateString('ko-KR')],
+                    ['Export Date:', new Date().toLocaleDateString('en-US')],
                     ['Total Projects:', selectedProjectsList.length],
                     ['Selected Fields:', excelSelectedFieldNames.length > 0 ? excelSelectedFieldNames.join(', ') : 'All Fields'],
                     [''],
@@ -1098,7 +1098,7 @@
                 XLSX.writeFile(wb, fileName);
                 
                 // 성공 메시지
-                showSuccess(`Excel 다운로드가 완료되었습니다! (${selectedProjectsList.length}개 프로젝트)`);
+                showSuccess(`Excel 다운로드가 완료되었습니다! (${selectedProjectsList.length} Project(s))`);
                 
             } catch (error) {
                 console.error('Excel 생성 오류:', error);
