@@ -493,10 +493,10 @@
                             Deselect All
                         </button>
                         <button class="btn btn-warning" onclick="downloadExcel()" id="downloadExcelBtn" disabled>
-                            Download Excel (<span id="selectedProjectCount">0</span> Project(s))
+                            Download Excel (<span id="selectedProjectCount">0</span> Projects)
                         </button>
                         <button class="btn btn-success" onclick="downloadPDF()" id="downloadBtn" disabled>
-                            Download PDF (<span id="selectedProjectCountPDF">0</span> Project(s))
+                            Download PDF (<span id="selectedProjectCountPDF">0</span> Projects)
                         </button>
                         <button class="btn btn-primary" onclick="refreshData()">
                             Refresh
@@ -858,7 +858,7 @@
             const downloadBtn = document.getElementById('downloadBtn');
             const downloadExcelBtn = document.getElementById('downloadExcelBtn');
             
-            resultsCount.textContent = `${filteredProjects.length} Project(s)`;
+            resultsCount.textContent = `${filteredProjects.length} Projects`;
             
             if (filteredProjects.length === 0) {
                 container.innerHTML = `
@@ -1098,7 +1098,7 @@
                 XLSX.writeFile(wb, fileName);
                 
                 // 성공 메시지
-                showSuccess(`Excel 다운로드가 완료되었습니다! (${selectedProjectsList.length} Project(s))`);
+                showSuccess(`Excel 다운로드가 완료되었습니다! (${selectedProjectsList.length} Projects)`);
                 
             } catch (error) {
                 console.error('Excel 생성 오류:', error);
@@ -1382,7 +1382,7 @@
                 document.getElementById('projectsList').innerHTML = originalContent;
 
                 // 성공 메시지
-                showSuccess(`PDF 다운로드가 완료되었습니다! (${selectedProjectsList.length} Project(s))`);
+                showSuccess(`PDF 다운로드가 완료되었습니다! (${selectedProjectsList.length} Projects)`);
 
             } catch (error) {
                 console.error('PDF 생성 오류:', error);
