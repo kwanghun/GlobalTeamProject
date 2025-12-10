@@ -623,7 +623,7 @@
                     throw new Error(`파일을 불러올 수 없습니다 (${response.status})`);
                 }
                 
-                const lastModified = response.headers.get('Last-Modified');
+                const fileLastModified = response.headers.get('Last-Modified');
                 const arrayBuffer = await response.arrayBuffer();
                 const workbook = XLSX.read(arrayBuffer, { type: 'array' });
                 
@@ -725,7 +725,7 @@
                 
                 createResearchFieldsGrid();
                 updateProjectsList();
-                updateLastUpdateTime(lastModified);
+                updateLastUpdateTime(fileLastModified);
                 
                 document.getElementById('serverStatus').textContent = 'Ready (Static)';
                 document.getElementById('serverStatus').style.color = '#4caf50';
@@ -757,7 +757,7 @@
                     return dateValue.toString();
                 }
                 
-                return date.toLocaleDateString('ko-KR');
+                return date.toLocaleDateString('en-US');
             } catch (error) {
                 return dateValue.toString();
             }
@@ -1403,8 +1403,8 @@
         }
 
         // 마지막 업데이트 시간 설정
-        function updateLastUpdateTime() {
-            const date = dateString ? new Date(dateString) : new Date();
+        function updateLastUpdateTime(timestamp) {
+            const date = timestamp ? new Date(timestamp) : new Date();
             document.getElementById('lastUpdate').textContent = date.toLocaleString('en-US');
         }
 
